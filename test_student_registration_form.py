@@ -1,5 +1,6 @@
 from selene.support.shared import browser
 from selene import be, command
+import os, sys
 
 
 browser.open('https://demoqa.com/automation-practice-form')
@@ -15,7 +16,8 @@ browser.element('[class="react-datepicker__day react-datepicker__day--014"').cli
 browser.element('[id="subjectsInput"]').should(be.blank).type('math, history, Informatics')
 browser.element('[for="hobbies-checkbox-2"]').click()
 browser.element('[for="hobbies-checkbox-3"]').click()
-browser.element('[id="uploadPicture"]').send_keys('C:/AQA/qa_guru_python_1/photo_2016-08-25_20-45-23.jpg')
+picture_path = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), 'photo_2016-08-25_20-45-23.jpg')
+browser.element('[id="uploadPicture"]').send_keys(picture_path)
 browser.element('[id="currentAddress"]').type('Moscow, Tverskaya str, 19, 173')
 browser.element('[id="state"]').perform(command.js.scroll_into_view)
 browser.element('[id="react-select-3-input"]').send_keys('NCR').press_enter()
